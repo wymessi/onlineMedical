@@ -1,0 +1,29 @@
+@charset "utf-8";
+/* CSS Document */
+body,h1,h2,ul,p,input,select{ margin:0; padding:0;}
+li{ list-style:none;}
+a{ text-decoration:none;}
+#wrapper{ margin:0 auto;}
+
+#header{ height:50px; background:#F2F2F2;}
+#intro{ font-size:16px; color:#666; padding:16px 0 0 74px;}
+
+#content{height:500px; margin:0 auto; background:#099; padding-top:50px;}
+#reserveMessage{ width:770px;height:450px;  margin:0 auto; background:url(../images/personal_bg.png) no-repeat;}
+#h2{ height:30px; line-height:30px;font-size:18px; font-weight:bold;  position:absolute; left:390px;top:136px;}
+#personalTable{ padding:100px 0 0 100px;}
+#personalTable tr{color:#666; height:40px; line-height:40px; text-align:left;}
+#personalTable .td{ font-size:16px; }
+#personalTable .td1{ font-size:16px; color: #666 ; padding-left: 100px;}
+#personalTable .td a{color: #666}	
+#personalTable .td a:hover{ color:#ff9500;}
+#edit{ position:absolute; left:900px; top:162px;}
+#edit a{ color:#666;font-size:16px; padding: 0 10px;}
+#edit a:hover{ color:#ff9500;}
+#edit #submit{width:114px; height:52px;  border:none; background:none; background:url(../images/login_btn.png) no-repeat;  cursor:pointer; color:#fff; font-size:16px; font-weight:bold; letter-spacing:8px; position:relative; top:300px;}
+#personalTable input{width:186px;height:36px; border:2px solid #099; border-radius:6px; text-indent:10px;outline:none; font-size:14px; }
+#page{ width:330px; position: absolute; left: 500px; top:450px;}	
+#footer{ height:50px; background:#f2f2f2;}
+
+
+

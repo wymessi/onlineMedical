@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.hdu.mapper.UserMapper">
+
+	<!-- 医生注册 -->
+	<insert id="doctorRegister" parameterType="doctor">
+
+		<!-- 使用uuid生成主键 -->
+		<selectKey keyProperty="id" resultType="string" order="BEFORE">
+			select uuid()
+		</selectKey>
+		INSERT INTO doctor(id,dusername,password,phone,heat,hospital_id,department_id)
+		VALUES(#{id},#{dusername},#{password},#{phone},0,#{hospital.id},#{department.id})
+	</insert>
+
+	<!-- 患者注册 -->
+	<insert id="patientRegister" parameterType="patient">
+		<selectKey keyProperty="id" resultType="string" order="BEFORE">
+			select uuid()
+		</selectKey>
+		INSERT INTO patient(id,pusername,password,phone)
+		VALUES(#{id},#{pusername},#{password},#{phone})
+	</insert>
+
+	<!-- 医生登录 -->
+	<select id="doctorLogin" parameterType="doctor" resultMap="doctorLoginResultMap">
+		SELECT d.*,de.departmentName,h.hospitalName
+		FROM doctor d,department de,hospital h
+		WHERE dusername = #{dusername} AND password = #{password}
+		AND de.id = d.department_id AND h.id = d.hospital_id
+	</select>
+
+	<resultMap type="doctor" id="doctorLoginResultMap">
+		<!-- 唯一标识符 -->
+		<id column="id" property="id" />
+		<!-- 普通属性映射 -->
+		<result column="dusername" property="dusername" />
+		<result column="password" property="password" />
+		<result column="age" property="age" />
+		<result column="mail" property="mail" />
+		<result column="phone" property="phone" />
+		<result column="heat" property="heat" />
+
+		<!-- 医生关联医院 -->
+		<association property="hospital" javaType="hospital">
+			<id column="hospital_id" property="id" />
+			<result column="hospitalName" property="hospitalName" />
+		</association>
+		
+		<!-- 医生关联部门 -->
+		<association property="department" javaType="department">
+			<id column="department_id" property="id" />
+			<result column="departmentName" property="departmentName" />
+		</association>
+	</resultMap>
+
+	<!-- 患者登录 -->
+	<select id="patientLogin" parameterType="patient" resultType="patient">
+		SELECT * FROM patient WHERE pusername = #{pusername} AND password = #{password}
+	</select>
+
+	<!-- 根据id查找患者 -->
+	<select id="findPatientById" parameterType="string" resultType="patient">
+		SELECT * FROM patient WHERE id = #{id}
+	</select>
+
+	<!-- 根据id查找医生 -->
+	<select id="findDoctorById" parameterType="string" resultMap="doctorLoginResultMap">
+		SELECT d.*,de.departmentName,h.hospitalName
+		FROM doctor d,department de,hospital h
+		WHERE d.id = #{id}
+		AND d.department_id = de.id
+		AND d.hospital_id = h.id
+	</select>
+
+	<!-- 根据name查找医生 -->
+	<select id="findDoctorsByName" parameterType="page" resultType="doctor">
+		SELECT * FROM doctor WHERE dusername LIKE concat(concat('%',#{username}),'%') LIMIT #{startIndex},#{pageSize}
+	</select>
+
+	<!-- 根据科室id查找医生 -->
+	<select id="findDoctorsByDepartmentId" parameterType="string" resultType="doctor">
+		SELECT * FROM doctor d WHERE department_id = #{departmentId}
+		
+	</select>
+
+	<!-- 查询相关医生的总记录数 -->
+	<select id="getTotalRecord" parameterType="string" resultType="int">
+		SELECT count(*) FROM doctor where dusername LIKE concat(concat('%',#{username}),'%')
+		
+	</select>
+	
+	<!-- 更新患者信息 -->
+	<update id="updatePatient" parameterType="patient">
+		UPDATE patient SET
+		pusername = #{pusername},age = #{age},phone = #{phone},mail = #{mail}
+		WHERE id = #{id}
+	</update>
+
+	<!-- 更新医生信息 -->
+	<update id="updateDoctor" parameterType="doctor">
+		UPDATE doctor SET
+		dusername = #{dusername},age = #{age},phone = #{phone},mail =
+		#{mail},hospital_id = #{hospital.id},department_id = #{department.id} WHERE id = #{id}
+	</update>
+
+	<!-- 每次查询医生时，将热度+1 -->
+	<update id="updateHeat" parameterType="doctor">
+		UPDATE doctor SET heat = heat + 1 WHERE id = #{id}
+	</update>
+	
+	<!-- 根据热度查找热门医生 -->
+	<select id="findHotDoctors" resultType="doctor">
+		SELECT * FROM doctor ORDER BY heat DESC LIMIT 0,5
+	</select>
+</mapper>
+

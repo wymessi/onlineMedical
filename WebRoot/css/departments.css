@@ -1,0 +1,33 @@
+@charset "utf-8";
+/* CSS Document */
+body,h1,h2,ul,p,input,select,dl,dt,dd{ margin:0; padding:0;}
+li,dt,dd{ list-style:none;}
+a{ text-decoration:none;}
+#wrapper{ margin:0 auto;}
+
+#header{ height:50px; background:#F2F2F2;}
+#intro{ font-size:20px; color:#000; padding:16px 0 0 74px;}
+#message{ position:absolute; left:1100px; top:16px;}
+#message a,#intro a{ color:#666;font-size:18px; padding: 0 10px;}
+#message a:hover,#intro a:hover{ color:#FF9500;}
+
+#menu{height:50px; margin: -20px 0 0 650px;}
+#menu li{ height:50px; float: left; padding-left:40px;}
+#menu li a{color: #666}
+#menu li a:hover{color:#FF9500;}
+#menu li .active{color:#FF9500;}
+#content{height:500px; margin:0 auto; background:#099; padding-top:50px;}
+#mainContent{width:770px;height:450px;  margin:0 auto; background:url(../images/personal_bg.png) no-repeat;}
+#mainContentLeft{width:385px;height:450px; float: left;}
+#mainContentRight{width:385px;height:450px;float: left;}
+#dl,#mainContentRight #dl2{ padding:40px 0 0 40px;}
+.dt,#mainContentRight .dt2{color:#666; height:40px; line-height:40px;  font-weight: bold;}
+#dl .dd,#mainContentRight .dd2{ font-size:16px; height:40px; line-height:40px; padding:20px 80px 0 10px; float: left; }
+#dl .dd a,#mainContentRight .dd2 a{color: #666;}	
+#dl .dd a:hover,#mainContentRight .dd2 a:hover{color: #FF9500;}
+
+#page{ width:330px;margin:0 auto; margin-top:-100px;}	
+#footer{ height:50px; background:#f2f2f2;}
+
+
+

@@ -1,0 +1,44 @@
+@charset "utf-8";
+/* CSS Document */
+body,h1,h2,ul,p,input{ margin:0; padding:0;}
+li{ list-style:none;}
+a{ text-decoration:none;}
+#wrapper{ margin:0 auto;}
+
+#header{ height:50px; background:#F2F2F2;}
+#intro{ font-size:16px; color:#666; padding:16px 0 0 74px;}
+#rl{ position:absolute; left:1000px; top:16px;}
+#rl a{ color:#000;font-size:18px; padding: 0 10px;}
+#rl a:hover{ color:#FF9500;}
+
+#content{width:960px; height:420px; margin:0 auto;}
+#img{ position:absolute; left:620px; top:124px;}
+h1{ font-size:20px; font-weight:normal; color:#FF9500; position:absolute; left:590px; top:228px;}
+#input{ font-size:20px; color:# 757575; width:462px; height:50px;border:2px solid #099; border-radius:10px; padding-left:120px;position:absolute; left:384px; top:270px; outline:none;}
+
+#submitName{width:20px; height:20px;position:absolute; left:930px; top:290px;border:none; background:none; background: url(../images/search.png) no-repeat; cursor: pointer; outline: none;} 
+
+#footer{ height:300px;background:#f2f2f2;padding: 50px 0 0 240px;}
+#footer div{width:350px;float:left; }
+h2{ font-size:20px; color:#383333; padding-bottom:20px;}
+#footer div li{ padding:10px 0;}
+#footer div li a{ color:#099;}
+#footer div li a:hover{ color:#FF9500;}
+
+#user-error,#password-error{ position: absolute; color: red; font-size: 16px;left:250px;}
+#user-error{  top:90px;}
+#input-error{ position: absolute; color: red; font-size: 20px; left:600px; top:340px;}
+#password-error{ top:148px;}
+#login{ width:432px; height:290px; position:absolute; left:458px; top:160px; background:url(../images/login_bg.png)}
+#h2{ height:30px; line-height:30px;font-size:14px; font-weight:bold; color:#666; position:absolute; left:24px;top:36px;}
+.forget{ text-decoration:none;position:absolute; left:274px;top:34px; height:30px; line-height:30px;font-size:12px; color:#999;}
+.forget:hover{ color:#F60;}
+#user,#password{position:absolute; left:24px;width:372px; height:36px; border:2px solid #099; border-radius:6px; text-indent:10px;outline:none;}
+#user{  top:82px;}
+#password{ top:140px;}
+#submit{position:absolute; width:114px; height:52px;  border:none; background:none; background:url(../images/login_btn.png) no-repeat;  cursor:pointer; color:#fff; font-size:16px; font-weight:bold; letter-spacing:10px;}
+#submit{left:240px; top:200px;}
+#checkbox{ position:absolute; left:24px;top:218px;}
+.remember{position:absolute; left:50px; top:218px;font-size:12px; color:#666;}
+#logincontent{height:548px; margin:0 auto; background:#099;}
+#loginfooter{ height:50px; background:#f2f2f2;}

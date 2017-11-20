@@ -1,0 +1,39 @@
+@charset "utf-8";
+/* CSS Document */
+body,h1,h2,ul,p,input,select{ margin:0; padding:0;}
+li{ list-style:none;}
+a{ text-decoration:none;}
+#wrapper{ margin:0 auto;}
+
+#header{ height:50px; background:#F2F2F2;}
+#intro{ font-size:16px; color:#666; padding:16px 0 0 74px;}
+#rl{ position:absolute; left:1100px; top:16px;}
+#rl a{ color:#000;font-size:18px; padding: 0 10px;}
+#rl a:hover{ color:#FF9500;}
+
+#content{height:550px; margin:0 auto; background:#099;}
+#img{ position:absolute; left:620px; top:124px;}
+h1{ font-size:20px; font-weight:normal; color:#FF9500; position:absolute; left:590px; top:228px;}
+#input{ font-size:20px; color:# 757575; width:462px; height:50px;border:2px solid #099; border-radius:10px; padding-left:120px;position:absolute; left:384px; top:270px; outline:none;}
+#img2{ position:absolute; left:930px; top:290px;}
+
+#footer{ height:50px; background:#f2f2f2;}
+
+#login{ width:432px; height:440px; position:absolute; left:458px; top:100px; background:url(../images/register_bg.png)}
+#h2{ height:30px; line-height:30px;font-size:14px; font-weight:bold; color:#666; position:absolute; left:24px;top:36px;}
+#user,#password,#repassword,#phone,#department,#hospital{position:absolute; left:24px;width:372px; height:36px; border:2px solid #099; border-radius:6px; text-indent:10px;outline:none; font-size:14px; font-family:"Arial Black", Gadget, sans-serif}
+#user{  top:70px;}
+#password{ top:120px;}
+#repassword{top:170px;}
+#phone{top:220px;}
+#hospital{top:270px;}
+#department{top:320px;}
+#hospital,#department{ width:376px;height:38px;outline:none;color:#767676;text-indent:5px;}
+#submit{position:absolute; width:114px; height:52px;  border:none; background:none; background:url(../images/login_btn.png) no-repeat;  cursor:pointer; color:#fff; font-size:16px; font-weight:bold; letter-spacing:10px;}
+#submit{left:156px; top:370px;}
+
+#user-error,#password-error,#repassword-error,#phone-error{ position: absolute; color: red; font-size: 16px;left:220px;}
+#user-error{  top:77px;}
+#password-error{ top:127px;}
+#repassword-error{top:177px;}
+#phone-error{top:227px;}

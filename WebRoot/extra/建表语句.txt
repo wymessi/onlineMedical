@@ -1,0 +1,74 @@
+
+CREATE table hospital(
+	id          VARCHAR(36)     PRIMARY KEY,
+	hospitalName        VARCHAR(12)     NOT NULL,
+	location    VARCHAR(36)     NOT NULL,
+	description VARCHAR(256)    NULL,
+	heat        INT              NULL
+);
+
+CREATE table department(
+	id          VARCHAR(36)     PRIMARY KEY,
+	departmentName        VARCHAR(12)     NOT NULL
+);
+
+CREATE table hospital_department(
+	id            VARCHAR(36)     PRIMARY KEY,
+	hospital_id     VARCHAR(36)     NOT NULL ,
+	department_id    VARCHAR(36)     NOT NULL,
+	CONSTRAINT hospital_id_FK FOREIGN KEY(hospital_id) REFERENCES hospital(id),
+	CONSTRAINT department_id_FK FOREIGN KEY(department_id) REFERENCES department(id)
+);
+
+CREATE table doctor(
+	id              VARCHAR(36)     PRIMARY KEY,
+	username        VARCHAR(12)     NOT NULL,
+	password        VARCHAR(24)     NOT NULL,
+	age             INT             NULL,
+	mail 			VARCHAR(36)     NULL,
+	phone           VARCHAR(16)     NOT NULL,
+	heat            INT             NULL,
+	hospital_id     VARCHAR(36)     NOT NULL,
+	department_id   VARCHAR(36)     NOT NULL,
+	CONSTRAINT hospital_id_FK2 FOREIGN KEY(hospital_id) REFERENCES hospital(id),
+	CONSTRAINT department_id_FK2 FOREIGN KEY(department_id) REFERENCES department(id)
+);
+
+CREATE table illness(
+	id             VARCHAR(36)     PRIMARY KEY,
+	name           VARCHAR(12)     NOT NULL,
+	description    VARCHAR(256)    NOT NULL,
+	department_id  VARCHAR(36)     NOT NULL,
+	heat        INT                NULL,
+	CONSTRAINT department_id_FK3 FOREIGN KEY(department_id) REFERENCES department(id)
+);
+
+CREATE table patient(
+	id              VARCHAR(36)     PRIMARY KEY,
+	username        VARCHAR(12)     NOT NULL,
+	password        VARCHAR(24)     NOT NULL,
+	age             INT             NULL,
+	mail 			VARCHAR(36)     NULL,
+	phone           VARCHAR(16)     NOT NULL
+);
+
+
+CREATE table doctor_illness(
+	id            VARCHAR(36)     PRIMARY KEY,
+	doctor_id     VARCHAR(36)     NOT NULL ,
+	illness_id    VARCHAR(36)     NOT NULL,
+	CONSTRAINT doctor_id_FK FOREIGN KEY(doctor_id) REFERENCES doctor(id),
+	CONSTRAINT illness_id_FK FOREIGN KEY(illness_id) REFERENCES illness(id)
+);
+
+CREATE table reservation(
+	id                VARCHAR(36)     PRIMARY KEY,
+	doctor_id         VARCHAR(36)     NOT NULL ,
+	patient_id        VARCHAR(36)     NOT NULL,
+	reservation_time  DATETIME        NOT NULL,
+	create_time       VARCHAR(36)     NOT NULL,
+	symptom           VARCHAR(256)    NOT NULL,
+	success           INT             NOT NULL,
+	CONSTRAINT doctor_id_FK2 FOREIGN KEY(doctor_id) REFERENCES doctor(id),
+	CONSTRAINT patient_id_FK FOREIGN KEY(patient_id) REFERENCES patient(id)
+);

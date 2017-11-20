@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.hdu.mapper.HospitalMapper">
+
+	<!-- 查出所有医院 -->
+	<select id="findAllHospital" resultType="hospital">
+		SELECT * FROM hospital
+	</select>
+
+	<!-- 根据姓名查找医院 -->
+	<select id="findHospitalByName" parameterType="string" resultType="hospital">
+		SELECT * FROM hospital WHERE hospitalName = #{hospitalName}
+	</select>
+	
+	<!-- 根据id查找医院 -->
+	<select id="findHospitalById" parameterType="string" resultType="hospital">
+		SELECT * FROM hospital WHERE id = #{id}
+	</select>
+	
+	<!-- 每次查询医院时，将热度+1 -->
+	<update id="updateHeat" parameterType="hospital">
+		UPDATE hospital SET heat = heat + 1 WHERE id = #{id}
+	</update>
+	
+	<!-- 根据热度查找医院 -->
+	<select id="findHotHospitals" resultType="hospital">
+		SELECT * FROM hospital ORDER BY heat DESC LIMIT 0,5
+	</select>
+</mapper>
+

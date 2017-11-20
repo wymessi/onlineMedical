@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.hdu.mapper.DepartmentMapper">
+
+	<!-- 根据医院id查出该医院所有的科室 -->
+	
+	<select id="findAllDepartmentByhospitalId" parameterType="string"
+		resultType="department">
+		SELECT d.* FROM department d,hospital_department hd WHERE d.id = hd.department_id AND hd.hospital_id = #{hospital_id}
+	</select>
+
+	<!-- 根据部门名称查出部门 -->
+	
+	<select id="findDepartmentByName" parameterType="string" resultType="department">
+		SELECT * FROM department WHERE departmentName = #{departmentName}
+	</select>
+</mapper>
+

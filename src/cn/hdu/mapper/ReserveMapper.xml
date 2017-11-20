@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.hdu.mapper.ReserveMapper">
+
+	<!-- 向数据库保存订单 -->
+	<insert id="reserve" parameterType="reservation">
+		<selectKey keyProperty="id" resultType="string" order="BEFORE">
+			select uuid()
+		</selectKey>
+		INSERT INTO reservation(id,patient_id,doctor_id,reservation_time,symptom,success,create_time)
+		VALUES(#{id},#{patientId},#{doctorId},#{reservation_time},#{symptom},2,#{create_time})
+	</insert>
+		
+	<!-- 根据患者id得到其相关订单的总数 -->
+	<select id="getTotalRecordByPatientId" parameterType="string" resultType="int">
+		SELECT count(*) FROM reservation where patient_id = #{patientId}
+	</select>
+	
+	
+	<!-- 根据患者id分页查询订单信息 -->
+	<select id="findReservationsByPatientId" parameterType="page" resultType="reservation">
+		SELECT * FROM reservation WHERE patient_id = #{patientId} LIMIT #{startIndex},#{pageSize}
+	</select>
+	
+	<!-- 根据医生id得到其相关订单的总数 -->
+	<select id="getTotalRecordByDoctorId" parameterType="string" resultType="int">
+		SELECT count(*) FROM reservation where doctor_id = #{doctorId}
+	</select>
+	
+	
+	<!-- 根据医生id分页查询订单信息 -->
+	<select id="findReservationsByDoctorId" parameterType="page" resultType="reservation">
+		SELECT * FROM reservation WHERE doctor_id = #{doctorId} LIMIT #{startIndex},#{pageSize}
+	</select>
+	
+	<!-- 根据id查找预约单详细信息-->
+	<select id="findReservationById" parameterType="string" resultMap="reserveDetailResultMap">
+		SELECT r.*,d.dusername,d.phone,p.pusername FROM reservation r,doctor d,patient p WHERE r.id = #{reservationId}
+		AND r.doctor_id = d.id AND r.patient_id = p.id
+	</select>
+	
+	<resultMap type="reservation" id="reserveDetailResultMap">
+		<id column="id" property="id"/>
+		
+		<result column="reservation_time" property="reservation_time"/>
+		<result column="create_time" property="create_time"/>
+		<result column="success" property="success"/>
+		<result column="symptom" property="symptom"/>
+		
+		<association property="doctor" javaType="doctor">
+			<id column="doctor_id" property="id"/>
+			<result column="dusername" property="dusername"/>
+			<result column="phone" property="phone"/>
+		</association>
+
+		<association property="patient" javaType="patient">
+			<id column="patient_id" property="id"/>
+			<result column="pusername" property="pusername"/>
+		</association>
+	</resultMap>
+	
+	<update id="updateReservation" parameterType="reservation">
+		UPDATE reservation SET success = #{success} WHERE id = #{id}
+	</update>
+</mapper>
+
